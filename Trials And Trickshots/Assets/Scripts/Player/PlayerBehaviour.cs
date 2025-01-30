@@ -58,7 +58,7 @@ public class PlayerBehaviour : MonoBehaviour
 
         Vector3 movementVector = (movementValue.x * transform.right) + (movementValue.y * transform.forward);
 
-        rb.velocity = movementVector;
+        rb.velocity = new Vector3(movementVector.x, rb.velocity.y, movementVector.z);
     }
 
     /// <summary>
