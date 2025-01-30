@@ -12,7 +12,7 @@ using UnityEngine.InputSystem;
 public class PlayerBehaviour : MonoBehaviour
 {
     InputActionMap actionMap;
-    InputAction playerMove;
+    InputAction playerMove, playerLook;
     Rigidbody rb;
 
     [Header("Movement Values")]
@@ -28,6 +28,7 @@ public class PlayerBehaviour : MonoBehaviour
         actionMap.Enable();
 
         playerMove = actionMap.FindAction("Move");
+        playerLook = actionMap.FindAction("Look");
 
         rb = GetComponent<Rigidbody>();
     }
@@ -38,6 +39,8 @@ public class PlayerBehaviour : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
+
+        //LookAt();
     }
 
     /// <summary>
@@ -47,6 +50,18 @@ public class PlayerBehaviour : MonoBehaviour
     {
         Vector2 movementValue = playerMove.ReadValue<Vector2>() * playerSpeed;
 
-        rb.velocity = new Vector3(movementValue.x, rb.velocity.y, movementValue.y);
+        Vector3 movementVector = (movementValue.x * transform.right) + (movementValue.y * transform.forward);
+
+        rb.velocity = movementVector;
+    }
+
+    /// <summary>
+    /// Moves the camera to look at the mouse
+    /// </summary>
+    private void LookAt()
+    {
+        Vector2 lookValue = playerLook.ReadValue<Vector2>();
+
+        rb.rotation = Quaternion.Euler(lookValue.y, lookValue.x, 0);
     }
 }
