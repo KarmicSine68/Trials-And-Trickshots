@@ -14,10 +14,7 @@ public class ScoreManager : MonoBehaviour
     private int currentThrows;
     private List<int> scores;
     public Text ThrowText;
-    private void Update()
-    {
-        IncreaseThrows();
-    }
+
     //adds one to score
     public void IncreaseThrows()
     {
