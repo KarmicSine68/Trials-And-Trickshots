@@ -38,6 +38,14 @@ public class PlayerBehaviour : MonoBehaviour
     }
 
     /// <summary>
+    /// Locks the screen
+    /// </summary>
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    /// <summary>
     /// Calls player movement at a fixed rate
     /// </summary>
     private void FixedUpdate()
