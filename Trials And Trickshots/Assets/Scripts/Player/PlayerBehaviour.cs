@@ -19,6 +19,10 @@ public class PlayerBehaviour : MonoBehaviour
     [Tooltip("The speed of the player")]
     [SerializeField] private float playerSpeed;
 
+    [Header("Camera Values")]
+    [Tooltip("The sensitivity of the camera")]
+    [SerializeField] private float sensitivity;
+
     /// <summary>
     /// Enables the action map, input actions, and rigidbody
     /// </summary>
@@ -40,7 +44,9 @@ public class PlayerBehaviour : MonoBehaviour
     {
         MovePlayer();
 
-        //LookAt();
+        LookAt();
+
+        //Debug.Log(playerLook.ReadValue<Vector2>());
     }
 
     /// <summary>
@@ -62,6 +68,6 @@ public class PlayerBehaviour : MonoBehaviour
     {
         Vector2 lookValue = playerLook.ReadValue<Vector2>();
 
-        rb.rotation = Quaternion.Euler(lookValue.y, lookValue.x, 0);
+        transform.Rotate(new Vector3(0, lookValue.x * sensitivity, 0), Space.World);
     }
 }
