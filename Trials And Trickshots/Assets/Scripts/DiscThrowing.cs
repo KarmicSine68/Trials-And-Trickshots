@@ -1,21 +1,17 @@
 /******************************************************************************
  * Author: Sky Turner
  * Creation Date: 1/30/2025
- * File Name: CameraBehavior.cs
- * Brief: Controls the camera
+ * File Name: DiscThrowing.cs
+ * Brief: Handles the throwing of the disc.
  * ***************************************************************************/
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
-using UnityEditor.Experimental.GraphView;
 
-public class FrisbeeThrowing : MonoBehaviour
+public class DiscThrowing : MonoBehaviour
 {
-    [SerializeField] GameObject frisbeePrefab;
-    [SerializeField] Transform frisbeeInstantiationPoint;
+    [SerializeField] GameObject discPrefab;
+    [SerializeField] Transform discInstantiationPoint;
     [SerializeField] Transform player;
-    [SerializeField] int frisbeeForce;
+    [SerializeField] int discForce;
 
 
     // Start is called before the first frame update
@@ -34,10 +30,10 @@ public class FrisbeeThrowing : MonoBehaviour
 
     private void ThrowFrisbee()
     {
-        GameObject frisbee = Instantiate(frisbeePrefab, frisbeeInstantiationPoint);
+        GameObject frisbee = Instantiate(discPrefab, discInstantiationPoint);
         frisbee.transform.SetParent(null);
         Rigidbody frisbeeRB = frisbee.GetComponent<Rigidbody>();
-        frisbeeRB.AddForce((frisbeeInstantiationPoint.position - player.position) * frisbeeForce);
+        frisbeeRB.AddForce((discInstantiationPoint.position - player.position) * discForce);
     }
 
 }
