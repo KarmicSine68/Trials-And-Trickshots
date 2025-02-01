@@ -405,6 +405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 5
   sensitivity: 1
+  discThrowing: {fileID: 2757648330148643463}
 --- !u!114 &2757648330148643463
 MonoBehaviour:
   m_ObjectHideFlags: 0
