@@ -8,32 +8,35 @@ using UnityEngine;
 
 public class DiscThrowing : MonoBehaviour
 {
+    [Header("Disc Settings")]
     [SerializeField] GameObject discPrefab;
     [SerializeField] Transform discInstantiationPoint;
     [SerializeField] Transform player;
     [SerializeField] int discForce;
 
-
-    // Start is called before the first frame update
-    void Start()
+    private void ThrowDisc()
     {
-
-    }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(discPrefab == null || discInstantiationPoint == null)
         {
-            ThrowFrisbee();
+            Debug.Log("Disc Prefab or Instantiation Point is missing.");
+            return;
         }
+
+        GameObject disc = Instantiate(discPrefab, discInstantiationPoint.position, discInstantiationPoint.rotation);
+        disc.transform.SetParent(null);
+
+        Rigidbody discRB = disc.GetComponent<Rigidbody>();
+        if(discRB == null)
+        {
+            Debug.LogError("Disc Prefab is missing a Rigidbody component");
+        }
+
+        discRB.AddForce((discInstantiationPoint.position - player.position) * discForce);
     }
 
-    private void ThrowFrisbee()
+    public void RequestThrow()
     {
-        GameObject frisbee = Instantiate(discPrefab, discInstantiationPoint);
-        frisbee.transform.SetParent(null);
-        Rigidbody frisbeeRB = frisbee.GetComponent<Rigidbody>();
-        frisbeeRB.AddForce((discInstantiationPoint.position - player.position) * discForce);
+        ThrowDisc();
     }
 
 }

@@ -12,7 +12,7 @@ using UnityEngine.InputSystem;
 public class PlayerBehaviour : MonoBehaviour
 {
     InputActionMap actionMap;
-    InputAction playerMove, playerLook;
+    InputAction playerMove, playerLook, playerThrow;
     Rigidbody rb;
 
     [Header("Movement Values")]
@@ -22,6 +22,9 @@ public class PlayerBehaviour : MonoBehaviour
     [Header("Camera Values")]
     [Tooltip("The sensitivity of the camera")]
     [SerializeField] private float sensitivity;
+
+    [Header("Disc Throwing")]
+    [SerializeField] private DiscThrowing discThrowing;
 
     /// <summary>
     /// Enables the action map, input actions, and rigidbody
@@ -33,6 +36,7 @@ public class PlayerBehaviour : MonoBehaviour
 
         playerMove = actionMap.FindAction("Move");
         playerLook = actionMap.FindAction("Look");
+        playerThrow = actionMap.FindAction("Throw");
 
         rb = GetComponent<Rigidbody>();
     }
@@ -46,8 +50,17 @@ public class PlayerBehaviour : MonoBehaviour
     }
 
     /// <summary>
+    /// 
+    /// </summary>
+    private void Update()
+    {
+        PlayerThrow();
+    }
+
+    /// <summary>
     /// Calls player movement at a fixed rate
     /// </summary>
+    /// 
     private void FixedUpdate()
     {
         MovePlayer();
@@ -77,5 +90,16 @@ public class PlayerBehaviour : MonoBehaviour
         Vector2 lookValue = playerLook.ReadValue<Vector2>();
 
         transform.Rotate(new Vector3(0, lookValue.x * sensitivity, 0), Space.World);
+    }
+
+    /// <summary>
+    /// Calls the ThrowDisc() function from DiscThrowing.cs
+    /// </summary>
+    private void PlayerThrow()
+    {
+        if (playerThrow.WasPressedThisFrame() && discThrowing != null)
+        {
+            discThrowing.RequestThrow();
+        }
     }
 }
