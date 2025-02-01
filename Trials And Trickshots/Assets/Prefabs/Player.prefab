@@ -420,4 +420,4 @@ MonoBehaviour:
   discPrefab: {fileID: 1331264192413525665, guid: 963385d7a1cf57c4bbb5e3381178ec22, type: 3}
   discInstantiationPoint: {fileID: 5489811825217239164}
   player: {fileID: 2128465109049295826}
-  discForce: 651
+  discForce: 500
