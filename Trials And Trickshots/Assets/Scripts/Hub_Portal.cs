@@ -15,13 +15,13 @@ public class Hub_Portal : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision == null) return;
-        if(collision.gameObject.tag == "disc")
+        if(other == null) return;
+        if(other.gameObject.tag == "disc" || other.gameObject.tag == "Player")
         {
             //break particales
-            BreakParticles();
+                //BreakParticles();
             //activate teleport
             SceneManager.LoadScene(_level);
         }
@@ -30,6 +30,7 @@ public class Hub_Portal : MonoBehaviour
     private void BreakParticles()
     {
         GameObject firework = Instantiate(this.gameObject, this.transform.position, Quaternion.identity);
+
         firework.GetComponent<ParticleSystem>().Play();
     }
 }
