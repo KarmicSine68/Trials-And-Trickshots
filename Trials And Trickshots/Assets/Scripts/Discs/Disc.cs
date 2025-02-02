@@ -69,6 +69,10 @@ public class Disc : MonoBehaviour
         {
             discReady = false;
             chargingDisc = true;
+
+            //Defaults to the minimum throw multiplier
+            throwMultipler = MIN_THROW_MULTIPLIER;
+
             StartCoroutine(ChargeDisc());
         }
     }
@@ -98,6 +102,11 @@ public class Disc : MonoBehaviour
         }
 
         ThrowDisc();
+
+        if(inHub)
+        {
+            discReady = true;
+        }
     }
 
     /// <summary>
@@ -105,13 +114,19 @@ public class Disc : MonoBehaviour
     /// </summary>
     private void ThrowDisc()
     {
+        Debug.Log("Reached");
+
         //Spawns the disc
-        GameObject spawnedDisc = Instantiate(disc, player.transform);
+        GameObject spawnedDisc = Instantiate(disc, player.transform.position, Quaternion.identity);
 
         Vector3 launchForce = player.transform.forward * baseLaunchPower * throwMultipler;
 
         //Adds a force to the disc to get it to fly forward
         spawnedDisc.GetComponent<Rigidbody>().AddForce(launchForce, ForceMode.Impulse);
+
+        //An alternte way of throwing the disc in case the previous way causes problems
+        //float launchForce = baseLaunchPower * throwMultipler;
+        //spawnedDisc.GetComponent<Rigidbody>().velocity = player.transform.forward * launchForce;
     }
 
     /// <summary>
