@@ -66,7 +66,7 @@ public class StopDisc : MonoBehaviour
             if(!shielded)
             {
                 grounded = true;
-                GetComponent<Collider>().material.dynamicFriction = 1;
+                GetComponent<Collider>().material.dynamicFriction = 2;
             }
             else
             {

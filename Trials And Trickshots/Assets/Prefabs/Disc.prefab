@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5167435234902762087}
-  shielded: 0
+  shielded: 1
   shieldHits: 3
   shieldInvulnerabilityTime: 0.1
   upwardsBounce: 1
