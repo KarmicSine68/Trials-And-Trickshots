@@ -52,7 +52,7 @@ public class ScoreManager : MonoBehaviour
     }
 
     // logs the # of throws on for the hole you finished and then resets the count
-    public void SaveThrows() {
+    public void LogThrows() {
         scores.Add(currentThrows);
         ResetThrows();
     }
