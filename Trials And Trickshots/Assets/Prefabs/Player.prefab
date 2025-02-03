@@ -238,10 +238,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 018fd5b2ea330bf449a4c056a918a52f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disc: {fileID: 0}
-  baseLaunchPower: 0
-  maxThrowMultipler: 0
-  timeTillMaxPower: 0
+  disc: {fileID: 4157919118799871911, guid: afb299e0c69393b459a4e55391036c24, type: 3}
+  baseLaunchPower: 5
+  maxThrowMultipler: 2.5
+  timeTillMaxPower: 1
   inHub: 0
 --- !u!1 &6330581635865508920
 GameObject:
@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 3564747726160523790}
   - component: {fileID: 198560149994030074}
   - component: {fileID: 8306271383535254580}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}

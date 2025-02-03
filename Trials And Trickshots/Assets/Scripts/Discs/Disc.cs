@@ -121,6 +121,8 @@ public class Disc : MonoBehaviour
 
         Vector3 launchForce = player.transform.forward * baseLaunchPower * throwMultipler;
 
+        Debug.Log(launchForce);
+
         //Adds a force to the disc to get it to fly forward
         spawnedDisc.GetComponent<Rigidbody>().AddForce(launchForce, ForceMode.Impulse);
 
