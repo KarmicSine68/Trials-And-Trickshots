@@ -163,7 +163,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 153963708}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: c2e7945a3567d9b449c4b4f3e5b8f13b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 389612089}
   - component: {fileID: 389612088}
   - component: {fileID: 389612087}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -470,7 +470,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1114417883}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: c2e7945a3567d9b449c4b4f3e5b8f13b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -783,7 +783,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1836423157}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: c2e7945a3567d9b449c4b4f3e5b8f13b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -929,9 +929,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2907104499757770191, guid: afb299e0c69393b459a4e55391036c24, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4157919118799871911, guid: afb299e0c69393b459a4e55391036c24, type: 3}
       propertyPath: m_Name
       value: Disc
+      objectReference: {fileID: 0}
+    - target: {fileID: 8633228540374824903, guid: afb299e0c69393b459a4e55391036c24, type: 3}
+      propertyPath: m_Material
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
