@@ -10906,7 +10906,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1195686845405513941, guid: daec33a76460ed64eb89545db1523a48, type: 3}
       propertyPath: baseLaunchPower
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1195686845405513941, guid: daec33a76460ed64eb89545db1523a48, type: 3}
       propertyPath: timeTillMaxPower
@@ -10926,7 +10926,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8306271383535254580, guid: daec33a76460ed64eb89545db1523a48, type: 3}
       propertyPath: sensitivity
-      value: 0.25
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8733588459667980462, guid: daec33a76460ed64eb89545db1523a48, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13469,7 +13469,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9fb3139e4d0ffab4c908c9feb7239820, type: 2}
+  - {fileID: 2100000, guid: faece4fddc693f842b70a7c9858fc923, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
