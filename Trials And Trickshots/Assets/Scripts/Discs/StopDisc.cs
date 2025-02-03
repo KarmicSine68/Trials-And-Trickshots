@@ -67,6 +67,7 @@ public class StopDisc : MonoBehaviour
             {
                 grounded = true;
                 GetComponent<Collider>().material.dynamicFriction = 2;
+                GetComponent<Collider>().material.bounciness = 0;
             }
             else
             {
