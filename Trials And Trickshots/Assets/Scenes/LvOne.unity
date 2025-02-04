@@ -13932,6 +13932,7 @@ MonoBehaviour:
   _portal: {fileID: 1825450654}
   _particleSystem: {fileID: 0}
   _level: Hub
+  portalVisible: 1
 --- !u!43 &1837437731
 Mesh:
   m_ObjectHideFlags: 0
