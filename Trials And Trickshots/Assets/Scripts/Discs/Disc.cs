@@ -138,12 +138,4 @@ public class Disc : MonoBehaviour
     {
         discReady = true;
     }
-
-    private void OnDisable()
-    {
-        actionMap.Disable();
-
-        throwDisc.started -= ThrowDisc_started;
-        throwDisc.canceled -= ThrowDisc_canceled;
-    }
 }
