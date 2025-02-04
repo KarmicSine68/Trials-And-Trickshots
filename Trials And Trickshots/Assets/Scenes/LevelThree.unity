@@ -3146,6 +3146,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8306271383535254580, guid: daec33a76460ed64eb89545db1523a48, type: 3}
+      propertyPath: playerSpeed
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8733588459667980462, guid: daec33a76460ed64eb89545db1523a48, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.331524
@@ -3207,7 +3211,7 @@ GameObject:
   - component: {fileID: 460211086}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9695,7 +9699,7 @@ GameObject:
   - component: {fileID: 1435136039}
   m_Layer: 0
   m_Name: Cube (7)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12204,7 +12208,7 @@ GameObject:
   - component: {fileID: 1740534157}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
