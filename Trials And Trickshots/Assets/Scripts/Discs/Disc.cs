@@ -1,14 +1,15 @@
 /******************************************************************************
  * Author: Brad Dixon
  * Creation Date: 2/2/2025
- * File Name: StopDisc.cs
- * Brief: Stops the disc's movement if it touches the ground
+ * File Name: Disc.cs
+ * Updates: The gravity code was written by Skylar Turner
+ * Brief: Controls the disc's gravity, teleportation, and stopping
  * ***************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StopDisc : MonoBehaviour
+public class Disc : MonoBehaviour
 {
     [SerializeField] private Rigidbody rb;
 
