@@ -65,7 +65,7 @@ public class Disc : MonoBehaviour
         if(grounded)
         {
             Debug.Log(rb.velocity);
-            if (rb.velocity == Vector3.zero)
+            if (Mathf.Abs(rb.velocity.x) <= .001 && Mathf.Abs(rb.velocity.z) <= .001)
             {
                 Debug.Log("1");
                 landingPosition = transform.position;
