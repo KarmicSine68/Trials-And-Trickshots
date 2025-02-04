@@ -1,149 +1,177 @@
 /******************************************************************************
  * Author: Brad Dixon
- * Creation Date: 1/30/2025
+ * Creation Date: 2/2/2025
  * File Name: Disc.cs
- * Brief: The basic class that all discs will derive from
+ * Updates: The gravity code was written by Skylar Turner
+ * Brief: Controls the disc's gravity, teleportation, and stopping
  * ***************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Disc : MonoBehaviour
 {
-    InputActionMap actionMap;
-    InputAction throwDisc;
+    [SerializeField] private Rigidbody rb;
 
-    GameObject player;
+    [Tooltip("The friction applied to the disc when it touches the ground")]
+    [SerializeField] float discFriction;
 
-    [Header("Disc Variables")]
+    [Tooltip("The gravity enacted on the disc")]
+    [SerializeField] private float discGravity;
 
-    [Tooltip("The disk prefab")]
-    [SerializeField] private GameObject disc;
+    [Header("Shield variables")]
+    [Tooltip("While active, the disc will bounce off the ground instead of stopping")]
+    [SerializeField] private bool shielded;
 
-    [Tooltip("The base launch power of the disk")]
-    [SerializeField] private float baseLaunchPower;
+    [Tooltip("How many times the shield can hit the ground before it breaks")]
+    [SerializeField] private int shieldHits;
 
-    [Tooltip("The multipler for the force of a max power throw")]
-    [SerializeField] private float maxThrowMultipler;
+    [Tooltip("How many seconds it has before the shield can lose another hit")]
+    [SerializeField] private float shieldInvulnerabilityTime;
 
-    [Tooltip("How long it takes for a max throw to be reached")]
-    [SerializeField] private float timeTillMaxPower;
+    [Tooltip("How much the disc will bounce off the ground while shielded")]
+    [SerializeField] private float upwardsBounce;
 
-    private float throwMultipler;
-    private const float MIN_THROW_MULTIPLIER = 1;
+    [Header("Box Cast variables")]
+    [SerializeField] private LayerMask ground;
+    [SerializeField] private Collider discBox;
 
-    private bool chargingDisc;
-    private bool discReady;
+    private bool grounded = false;
+    private bool canHitShield = true;
 
-    [Header("Reset Condition")]
-    [Tooltip("Check true if player is in the hub/firing range")]
-    [SerializeField] private bool inHub;
+    private bool onGround = false;
+
+    //Teleportation variables
+    private Vector3 landingPosition;
+    private GameObject player;
 
     /// <summary>
-    /// Gets a reference to the player's input actions
+    /// Gets a reference to the player gameobject
     /// </summary>
-    private void Awake()
+    private void Start()
     {
         player = FindObjectOfType<PlayerBehaviour>().gameObject;
-
-        //Enables the action map
-        actionMap = player.GetComponent<PlayerInput>().currentActionMap;
-        actionMap.Enable();
-
-        throwDisc = actionMap.FindAction("Throw");
-
-        throwDisc.started += ThrowDisc_started;
-        throwDisc.canceled += ThrowDisc_canceled;
-
-        discReady = true;
     }
 
     /// <summary>
-    /// Executes code to charge the disc throw
+    /// Calls the code for ground collision and gravity
     /// </summary>
-    /// <param name="obj"></param>
-    private void ThrowDisc_started(InputAction.CallbackContext obj)
+    private void FixedUpdate()
     {
-        if (discReady)
+        GroundCollision();
+
+        DiscGravity();
+
+        if(grounded)
         {
-            discReady = false;
-            chargingDisc = true;
-
-            //Defaults to the minimum throw multiplier
-            throwMultipler = MIN_THROW_MULTIPLIER;
-
-            StartCoroutine(ChargeDisc());
-        }
-    }
-
-    /// <summary>
-    /// Executes code to throw the disc
-    /// </summary>
-    /// <param name="obj"></param>
-    private void ThrowDisc_canceled(InputAction.CallbackContext obj)
-    {
-        chargingDisc = false;
-    }
-
-    /// <summary>
-    /// Code to increase the power of the disc
-    /// </summary>
-    private IEnumerator ChargeDisc()
-    {
-        while(chargingDisc)
-        {
-            if(!chargingDisc)
+            Debug.Log(rb.velocity);
+            if (Mathf.Abs(rb.velocity.x) <= .001 && Mathf.Abs(rb.velocity.z) <= .001)
             {
-                continue;
+                Debug.Log("1");
+                landingPosition = transform.position;
+                Debug.Log("2");
+                TeleportPlayer();
+                Debug.Log("3");
+                Destroy(gameObject);
             }
-
-            yield return new WaitForSeconds(.1f);
         }
+    }
 
-        ThrowDisc();
+    /// <summary>
+    /// Checks if the disc has collided with the ground
+    /// </summary>
+    /// <param name="collision"></param>
+    //private void OnCollisionStay(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Ground"))
+    //    {
+    //        onGround = true;
+    //    }
+    //}
 
-        if(inHub)
+    /// <summary>
+    /// Applies a downward force on the disc
+    /// </summary>
+    private void DiscGravity()
+    {
+        rb.AddForce(Vector3.down * (rb.mass * discGravity));
+    }
+
+    /// <summary>
+    /// Either enacts friction on the disc or updates the disc's shield when the
+    /// disc hits the ground
+    /// </summary>
+    private void GroundCollision()
+    {
+        //Checks that the disc has hit the ground for the first time while not shielded.
+        //Also makes sure the shield is able to be hit again
+        if (HitGround() && !grounded && canHitShield)
         {
-            discReady = true;
+            //If no shield, enable friction to slow the disc down
+            if (!shielded)
+            {
+                grounded = true;
+                GetComponent<Collider>().material.dynamicFriction = discFriction;
+                GetComponent<Collider>().material.bounciness = 0;
+            }
+            //Decreases shield durability
+            else
+            {
+                canHitShield = false;
+
+                StartCoroutine(EnableShieldDamage());
+
+                --shieldHits;
+                Debug.Log(shieldHits);
+
+                //Disables shield if it runs out of durability
+                if (shieldHits <= 0)
+                {
+                    shielded = false;
+                }
+
+                rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+                rb.AddForce(Vector3.up * upwardsBounce, ForceMode.Impulse);
+            }
         }
     }
 
     /// <summary>
-    /// Code to throw the disc
+    /// Waits x amount of time before letting the shield take damage again.
+    /// Done so the shield doesn't take damage multiple times
     /// </summary>
-    private void ThrowDisc()
+    /// <returns></returns>
+    private IEnumerator EnableShieldDamage()
     {
-        Debug.Log("Reached");
+        float i = shieldInvulnerabilityTime;
+        while (i >= 0)
+        {
+            yield return new WaitForSeconds(.1f);
 
-        //Spawns the disc
-        GameObject spawnedDisc = Instantiate(disc, player.transform.position, Quaternion.identity);
+            i -= .1f;
+        }
 
-        Vector3 launchForce = player.transform.forward * baseLaunchPower * throwMultipler;
-
-        Debug.Log(launchForce);
-
-        //Adds a force to the disc to get it to fly forward
-        spawnedDisc.GetComponent<Rigidbody>().AddForce(launchForce, ForceMode.Impulse);
-
-        //An alternte way of throwing the disc in case the previous way causes problems
-        //float launchForce = baseLaunchPower * throwMultipler;
-        //spawnedDisc.GetComponent<Rigidbody>().velocity = player.transform.forward * launchForce;
+        canHitShield = true;
     }
 
     /// <summary>
-    /// Tells the code that a disc can be thrown again after the previous disc has landed
+    /// Returns true if the disc hits the ground
     /// </summary>
-    public void ReadyDisc()
+    /// <returns></returns>
+    private bool HitGround()
     {
-        discReady = true;
+        return Physics.BoxCast(discBox.bounds.center, discBox.bounds.size, Vector3.down, Quaternion.identity, .01f);
     }
 
-    private void OnDisable()
+    /// <summary>
+    /// Changes the players transform position to be where the landing position
+    /// of the disc was.
+    /// </summary>
+    private void TeleportPlayer()
     {
-        actionMap.Disable();
-
-        throwDisc.started -= ThrowDisc_started;
-        throwDisc.canceled -= ThrowDisc_canceled;
+        if (player != null)
+        {
+            player.transform.position = landingPosition;
+        }
     }
 }

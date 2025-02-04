@@ -54,8 +54,6 @@ public class PlayerBehaviour : MonoBehaviour
         MovePlayer();
 
         LookAt();
-
-        //Debug.Log(playerLook.ReadValue<Vector2>());
     }
 
     private void Update()
