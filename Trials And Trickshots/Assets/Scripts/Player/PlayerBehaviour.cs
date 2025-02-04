@@ -78,4 +78,9 @@ public class PlayerBehaviour : MonoBehaviour
 
         transform.Rotate(new Vector3(0, lookValue.x * sensitivity, 0), Space.World);
     }
+
+    private void OnDisable()
+    {
+        actionMap.Disable();
+    }
 }
