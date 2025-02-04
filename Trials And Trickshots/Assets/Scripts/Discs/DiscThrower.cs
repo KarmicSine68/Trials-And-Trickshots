@@ -1,7 +1,7 @@
 /******************************************************************************
  * Author: Brad Dixon
  * Creation Date: 1/30/2025
- * File Name: Disc.cs
+ * File Name: DiscThrower.cs
  * Brief: The basic class that all discs will derive from
  * ***************************************************************************/
 using System.Collections;

@@ -12,6 +12,10 @@ public class StopDisc : MonoBehaviour
 {
     [SerializeField] private Rigidbody rb;
 
+    [Header("Gravity Variables")]
+    [Tooltip("The gravity enacted on the disc")]
+    [SerializeField] private float discGravity;
+
     [Header("Shield variables")]
     [Tooltip("While active, the disc will bounce off the ground instead of stopping")]
     [SerializeField] private bool shielded;
@@ -33,22 +37,41 @@ public class StopDisc : MonoBehaviour
     private bool canHitShield = true;
 
     /// <summary>
-    /// Checks for when the disc hits the ground
+    /// Calls the code for ground collision and gravity
     /// </summary>
     private void FixedUpdate()
     {
+        GroundCollision();
 
+        DiscGravity();
+    }
+
+    /// <summary>
+    /// Applies a downward force on the disc
+    /// </summary>
+    private void DiscGravity()
+    {
+        rb.AddForce(Vector3.down * (rb.mass * discGravity));
+    }
+
+    /// <summary>
+    /// Either enacts friction on the disc or updates the disc's shield when the
+    /// disc hits the ground
+    /// </summary>
+    private void GroundCollision()
+    {
         //Checks that the disc has hit the ground for the first time while not shielded.
         //Also makes sure the shield is able to be hit again
-        if(HitGround() && !grounded && canHitShield)
+        if (HitGround() && !grounded && canHitShield)
         {
             //If no shield, enable friction to slow the disc down
-            if(!shielded)
+            if (!shielded)
             {
                 grounded = true;
                 GetComponent<Collider>().material.dynamicFriction = 2;
                 GetComponent<Collider>().material.bounciness = 0;
             }
+            //Decreases shield durability
             else
             {
                 canHitShield = false;

@@ -681,6 +681,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5167435234902762087}
+  discGravity: 0.5
   shielded: 0
   shieldHits: 3
   shieldInvulnerabilityTime: 0.1
@@ -717,7 +718,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4157919118799871911}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7eb0ce6338079ac44bbcb8df6c6a26fc, type: 3}
   m_Name: 
