@@ -102,4 +102,9 @@ public class PlayerBehaviour : MonoBehaviour
             Application.Quit();
         }
     }
+
+    private void OnDisable()
+    {
+        actionMap.Disable();
+    }
 }
