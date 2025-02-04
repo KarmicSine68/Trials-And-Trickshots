@@ -566,8 +566,6 @@ GameObject:
   - component: {fileID: 5167435234902762087}
   - component: {fileID: 2907104499757770191}
   - component: {fileID: 9200581153839121161}
-  - component: {fileID: 3202886748903171077}
-  - component: {fileID: 9092981766208281599}
   m_Layer: 7
   m_Name: Disc
   m_TagString: Untagged
@@ -681,6 +679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5167435234902762087}
+  discFriction: 2
   discGravity: 0.5
   shielded: 0
   shieldHits: 3
@@ -711,32 +710,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.25, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3202886748903171077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4157919118799871911}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7eb0ce6338079ac44bbcb8df6c6a26fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 5167435234902762087}
-  discGravity: 0.5
---- !u!114 &9092981766208281599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4157919118799871911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 433f30154c3131548aa2526128e037a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4866681850349755865
 GameObject:
   m_ObjectHideFlags: 3

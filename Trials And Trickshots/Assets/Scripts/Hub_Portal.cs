@@ -21,7 +21,7 @@ public class Hub_Portal : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if(other == null) return;
-        if(other.gameObject.GetComponent("DiscGravity") || other.gameObject.GetComponent("PlayerBehaviour")) //checks to see if the player walks into the portal or the disc makes contact
+        if(other.gameObject.GetComponent("Disc") || other.gameObject.GetComponent("PlayerBehaviour")) //checks to see if the player walks into the portal or the disc makes contact
         {
             //break particales
                 //BreakParticles(); //disabled for now

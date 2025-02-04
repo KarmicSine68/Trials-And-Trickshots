@@ -13,7 +13,9 @@ public class Disc : MonoBehaviour
 {
     [SerializeField] private Rigidbody rb;
 
-    [Header("Gravity Variables")]
+    [Tooltip("The friction applied to the disc when it touches the ground")]
+    [SerializeField] float discFriction;
+
     [Tooltip("The gravity enacted on the disc")]
     [SerializeField] private float discGravity;
 
@@ -37,6 +39,20 @@ public class Disc : MonoBehaviour
     private bool grounded = false;
     private bool canHitShield = true;
 
+    private bool onGround = false;
+
+    //Teleportation variables
+    private Vector3 landingPosition;
+    private GameObject player;
+
+    /// <summary>
+    /// Gets a reference to the player gameobject
+    /// </summary>
+    private void Start()
+    {
+        player = FindObjectOfType<PlayerBehaviour>().gameObject;
+    }
+
     /// <summary>
     /// Calls the code for ground collision and gravity
     /// </summary>
@@ -45,7 +61,33 @@ public class Disc : MonoBehaviour
         GroundCollision();
 
         DiscGravity();
+
+        if(grounded)
+        {
+            Debug.Log(rb.velocity);
+            if (rb.velocity == Vector3.zero)
+            {
+                Debug.Log("1");
+                landingPosition = transform.position;
+                Debug.Log("2");
+                TeleportPlayer();
+                Debug.Log("3");
+                Destroy(gameObject);
+            }
+        }
     }
+
+    /// <summary>
+    /// Checks if the disc has collided with the ground
+    /// </summary>
+    /// <param name="collision"></param>
+    //private void OnCollisionStay(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Ground"))
+    //    {
+    //        onGround = true;
+    //    }
+    //}
 
     /// <summary>
     /// Applies a downward force on the disc
@@ -69,7 +111,7 @@ public class Disc : MonoBehaviour
             if (!shielded)
             {
                 grounded = true;
-                GetComponent<Collider>().material.dynamicFriction = 2;
+                GetComponent<Collider>().material.dynamicFriction = discFriction;
                 GetComponent<Collider>().material.bounciness = 0;
             }
             //Decreases shield durability
@@ -119,5 +161,17 @@ public class Disc : MonoBehaviour
     private bool HitGround()
     {
         return Physics.BoxCast(discBox.bounds.center, discBox.bounds.size, Vector3.down, Quaternion.identity, .01f);
+    }
+
+    /// <summary>
+    /// Changes the players transform position to be where the landing position
+    /// of the disc was.
+    /// </summary>
+    private void TeleportPlayer()
+    {
+        if (player != null)
+        {
+            player.transform.position = landingPosition;
+        }
     }
 }
