@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -57,6 +58,13 @@ public class PlayerBehaviour : MonoBehaviour
         //Debug.Log(playerLook.ReadValue<Vector2>());
     }
 
+    private void Update()
+    {
+        Restart();
+
+        Quit();
+    }
+
     /// <summary>
     /// Moves the player
     /// </summary>
@@ -77,5 +85,21 @@ public class PlayerBehaviour : MonoBehaviour
         Vector2 lookValue = playerLook.ReadValue<Vector2>();
 
         transform.Rotate(new Vector3(0, lookValue.x * sensitivity, 0), Space.World);
+    }
+
+    private void Restart()
+    {
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+
+    private void Quit()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 }
