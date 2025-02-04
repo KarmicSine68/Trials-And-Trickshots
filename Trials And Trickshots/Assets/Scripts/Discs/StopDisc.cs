@@ -37,26 +37,6 @@ public class StopDisc : MonoBehaviour
     /// </summary>
     private void FixedUpdate()
     {
-        //if (HitGround() &&!grounded)
-        //{
-        //    if (shielded)
-        //    {
-        //        --shieldHits;
-        //        Debug.Log(shieldHits);
-
-        //        if (shieldHits <= 0)
-        //        {
-        //            shielded = false;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        Debug.Log("Ground hit");
-        //        grounded = true;
-
-        //        StopMovement();
-        //    }
-        //}
 
         //Checks that the disc has hit the ground for the first time while not shielded.
         //Also makes sure the shield is able to be hit again

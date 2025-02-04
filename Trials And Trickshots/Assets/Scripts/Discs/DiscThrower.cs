@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Disc : MonoBehaviour
+public class DiscThrower : MonoBehaviour
 {
     InputActionMap actionMap;
     InputAction throwDisc;
