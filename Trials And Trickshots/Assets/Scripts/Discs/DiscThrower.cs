@@ -14,7 +14,7 @@ public class DiscThrower : MonoBehaviour
     InputActionMap actionMap;
     InputAction throwDisc;
 
-    GameObject player;
+    [SerializeField] private GameObject player;
 
     [Header("Disc Variables")]
 
@@ -45,8 +45,7 @@ public class DiscThrower : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        player = FindObjectOfType<PlayerBehaviour>().gameObject;
-
+        
         //Enables the action map
         actionMap = player.GetComponent<PlayerInput>().currentActionMap;
         actionMap.Enable();
