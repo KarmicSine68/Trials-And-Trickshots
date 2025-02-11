@@ -8,12 +8,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
     private int currentThrows;
-    private List<int> scores;
-    public Text ThrowText;
+    public Text throwText;
+    public Text hole1ScoreText;
+    public Text hole2ScoreText;
+    public Text totalScoreText;
+    public GameObject scoreCard;
 
     //adds one to score
     public void IncreaseThrows()
@@ -35,14 +39,13 @@ public class ScoreManager : MonoBehaviour
     }
 
     //returns the score that was logged from a certian hole / level
-    public int GetThrowsFromHole(int holeNumber) {
-        if (holeNumber > scores.Count) {
-            return scores[scores.Count];
+    public int GetThrowsFromHole(string hole) {
+        if (PlayerPrefs.HasKey(hole)){
+            return PlayerPrefs.GetInt(hole);
+        } else {
+            Debug.Log("Hole does not exist");
+            return 0;
         }
-        if (holeNumber < 1){
-            return scores[0];
-        }
-        return scores[holeNumber - 1];
     }
 
     //sets the count of throws to 0
@@ -50,15 +53,31 @@ public class ScoreManager : MonoBehaviour
         currentThrows = 0;
         SetScoreText();
     }
-
     // logs the # of throws on for the hole you finished and then resets the count
-    public void LogThrows() {
-        scores.Add(currentThrows);
+    public void LogThrows(string hole) {
+        if (PlayerPrefs.HasKey(hole)) {
+            if (currentThrows < PlayerPrefs.GetInt(hole)) {
+                PlayerPrefs.SetInt(hole, currentThrows);
+            }
+        } else {
+            PlayerPrefs.SetInt(hole, currentThrows);
+        }
         ResetThrows();
     }
-
+    public void ShowScoreCard() {
+        scoreCard.SetActive(true);
+        if (PlayerPrefs.HasKey("LvOne")) {
+            hole1ScoreText.text = "" + PlayerPrefs.GetInt("LvOne");
+        }
+        if (PlayerPrefs.HasKey("LevelThree"))
+        {
+            hole2ScoreText.text = "" + PlayerPrefs.GetInt("LevelThree");
+        }
+        totalScoreText.text = "" + (PlayerPrefs.GetInt("LvOne") + PlayerPrefs.GetInt("LevelThree"));
+    }
     //sets the throws Text to the current throws;
     private void SetScoreText() {
-        ThrowText.text = "Throws: " + currentThrows;
+        throwText.text = "Throws: " + currentThrows;
     }
+    
 }
