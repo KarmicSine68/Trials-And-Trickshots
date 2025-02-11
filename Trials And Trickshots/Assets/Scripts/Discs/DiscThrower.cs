@@ -15,7 +15,8 @@ public class DiscThrower : MonoBehaviour
     InputAction throwDisc;
 
     [SerializeField] private GameObject player;
-
+    [SerializeField] private GameObject cam;
+    
     [Header("Disc Variables")]
 
     [Tooltip("The disk prefab")]
@@ -116,9 +117,9 @@ public class DiscThrower : MonoBehaviour
         Debug.Log("Reached");
 
         //Spawns the disc
-        GameObject spawnedDisc = Instantiate(disc, player.transform.position, Quaternion.identity);
+        GameObject spawnedDisc = Instantiate(disc, cam.transform.position, Quaternion.identity);
 
-        Vector3 launchForce = player.transform.forward * baseLaunchPower * throwMultipler;
+        Vector3 launchForce = cam.transform.forward * baseLaunchPower * throwMultipler;
 
         Debug.Log(launchForce);
 
