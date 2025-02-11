@@ -23,6 +23,12 @@ public class PlayerBehaviour : MonoBehaviour
     [Header("Camera Values")]
     [Tooltip("The sensitivity of the camera")]
     [SerializeField] private float sensitivity;
+    
+    [Header("Camera Vertical Turn Angles")]
+    private float yRotation = 0f;
+    [SerializeField] private float _vertViewHigh = 60f;
+    [SerializeField] private float _vertViewLow = -60f;
+    [SerializeField] private Transform camera;
 
     /// <summary>
     /// Enables the action map, input actions, and rigidbody
@@ -80,11 +86,18 @@ public class PlayerBehaviour : MonoBehaviour
     /// </summary>
     private void LookAt()
     {
-        Vector2 lookValue = playerLook.ReadValue<Vector2>();
-
-        transform.Rotate(new Vector3(0, lookValue.x * sensitivity, 0), Space.World);
-    }
-
+        float lookValueX = playerLook.ReadValue<Vector2>().x * sensitivity;
+        float lookValueY = playerLook.ReadValue<Vector2>().y * sensitivity;
+        //clamp vertical looking
+        yRotation -= lookValueY;
+        yRotation = Mathf.Clamp(yRotation, _vertViewLow, _vertViewHigh);
+        //applying that lookin of up and down
+        camera.transform.rotation = Quaternion.Euler(yRotation, 0f, 0f);
+        //apply lookin for left and right
+        this.gameObject.transform.Rotate(Vector3.up * lookValueX);
+        //locking z rotation so it dont flip sideways
+        camera.transform.rotation = Quaternion.Euler(camera.transform.rotation.eulerAngles.x, this.gameObject.transform.rotation.eulerAngles.y, 0f);            
+        }
     private void Restart()
     {
         if(Input.GetKeyDown(KeyCode.R))

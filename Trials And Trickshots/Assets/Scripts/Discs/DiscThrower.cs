@@ -14,8 +14,9 @@ public class DiscThrower : MonoBehaviour
     InputActionMap actionMap;
     InputAction throwDisc;
 
-    GameObject player;
-
+    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject cam;
+    
     [Header("Disc Variables")]
 
     [Tooltip("The disk prefab")]
@@ -45,8 +46,7 @@ public class DiscThrower : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        player = FindObjectOfType<PlayerBehaviour>().gameObject;
-
+        
         //Enables the action map
         actionMap = player.GetComponent<PlayerInput>().currentActionMap;
         actionMap.Enable();
@@ -117,9 +117,9 @@ public class DiscThrower : MonoBehaviour
         Debug.Log("Reached");
 
         //Spawns the disc
-        GameObject spawnedDisc = Instantiate(disc, player.transform.position, Quaternion.identity);
+        GameObject spawnedDisc = Instantiate(disc, cam.transform.position, Quaternion.identity);
 
-        Vector3 launchForce = player.transform.forward * baseLaunchPower * throwMultipler;
+        Vector3 launchForce = cam.transform.forward * baseLaunchPower * throwMultipler;
 
         Debug.Log(launchForce);
 
