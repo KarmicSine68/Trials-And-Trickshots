@@ -13,7 +13,7 @@ public class Hub_Portal : MonoBehaviour
     private ScoreManager sm;
     private void Start()
     {
-        sm = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
+        //sm = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
         if(!portalVisible)
         {
             _portal.SetActive(false);
