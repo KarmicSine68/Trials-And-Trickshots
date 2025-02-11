@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 018fd5b2ea330bf449a4c056a918a52f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disc: {fileID: 4157919118799871911, guid: afb299e0c69393b459a4e55391036c24, type: 3}
+  disc: {fileID: 4157919118799871911, guid: 47eebc613b493054a916534f2072f6fe, type: 3}
   baseLaunchPower: 5
   maxThrowMultipler: 2.5
   timeTillMaxPower: 1

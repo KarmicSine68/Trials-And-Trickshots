@@ -11,13 +11,13 @@ using UnityEngine;
 
 public class Disc : MonoBehaviour
 {
-    [SerializeField] private Rigidbody rb;
+    [SerializeField] protected Rigidbody rb;
 
     [Tooltip("The friction applied to the disc when it touches the ground")]
-    [SerializeField] float discFriction;
+    [SerializeField] protected float discFriction;
 
     [Tooltip("The gravity enacted on the disc")]
-    [SerializeField] private float discGravity;
+    [SerializeField] protected float discGravity;
 
     [Header("Shield variables")]
     [Tooltip("While active, the disc will bounce off the ground instead of stopping")]
@@ -32,23 +32,20 @@ public class Disc : MonoBehaviour
     [Tooltip("How much the disc will bounce off the ground while shielded")]
     [SerializeField] private float upwardsBounce;
 
-    [Header("Box Cast variables")]
-    [SerializeField] private LayerMask ground;
-    [SerializeField] private Collider discBox;
+    [Header("")]
+    [SerializeField] protected Collider discBox;
 
-    private bool grounded = false;
+    protected bool grounded = false;
     private bool canHitShield = true;
 
-    private bool onGround = false;
-
     //Teleportation variables
-    private Vector3 landingPosition;
-    private GameObject player;
+    protected Vector3 landingPosition;
+    protected GameObject player;
 
     /// <summary>
     /// Gets a reference to the player gameobject
     /// </summary>
-    private void Start()
+    protected void Start()
     {
         player = FindObjectOfType<PlayerBehaviour>().gameObject;
     }
@@ -56,7 +53,7 @@ public class Disc : MonoBehaviour
     /// <summary>
     /// Calls the code for ground collision and gravity
     /// </summary>
-    private void FixedUpdate()
+    protected void FixedUpdate()
     {
         GroundCollision();
 
@@ -78,21 +75,9 @@ public class Disc : MonoBehaviour
     }
 
     /// <summary>
-    /// Checks if the disc has collided with the ground
-    /// </summary>
-    /// <param name="collision"></param>
-    //private void OnCollisionStay(Collision collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Ground"))
-    //    {
-    //        onGround = true;
-    //    }
-    //}
-
-    /// <summary>
     /// Applies a downward force on the disc
     /// </summary>
-    private void DiscGravity()
+    protected virtual void DiscGravity()
     {
         rb.AddForce(Vector3.down * (rb.mass * discGravity));
     }
@@ -101,7 +86,7 @@ public class Disc : MonoBehaviour
     /// Either enacts friction on the disc or updates the disc's shield when the
     /// disc hits the ground
     /// </summary>
-    private void GroundCollision()
+    protected void GroundCollision()
     {
         //Checks that the disc has hit the ground for the first time while not shielded.
         //Also makes sure the shield is able to be hit again
@@ -158,16 +143,16 @@ public class Disc : MonoBehaviour
     /// Returns true if the disc hits the ground
     /// </summary>
     /// <returns></returns>
-    private bool HitGround()
+    protected virtual bool HitGround()
     {
-        return Physics.BoxCast(discBox.bounds.center, discBox.bounds.size, Vector3.down, Quaternion.identity, .01f);
+        return Physics.BoxCast(discBox.bounds.center, discBox.bounds.size, Vector3.down, Quaternion.identity, .03f);
     }
 
     /// <summary>
     /// Changes the players transform position to be where the landing position
     /// of the disc was.
     /// </summary>
-    private void TeleportPlayer()
+    protected void TeleportPlayer()
     {
         if (player != null)
         {
