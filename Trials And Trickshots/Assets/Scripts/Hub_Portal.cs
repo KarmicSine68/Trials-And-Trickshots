@@ -28,7 +28,7 @@ public class Hub_Portal : MonoBehaviour
             //break particales
             //BreakParticles(); //disabled for now
             //activate teleport
-            if (_level == "Hub")
+            if (SceneManager.GetActiveScene().name == "Hub")
             {
                 SceneManager.LoadScene(_level);
             }

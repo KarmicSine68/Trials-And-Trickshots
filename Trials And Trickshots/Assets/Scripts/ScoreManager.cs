@@ -19,6 +19,10 @@ public class ScoreManager : MonoBehaviour
     public Text totalScoreText;
     public GameObject scoreCard;
 
+    private void Start()
+    {
+        ResetThrows();
+    }
     //adds one to score
     public void IncreaseThrows()
     {
@@ -53,27 +57,23 @@ public class ScoreManager : MonoBehaviour
         currentThrows = 0;
         SetScoreText();
     }
+    //resets the playerprefs to 0
+    public void ResetHighScores()
+    {
+        PlayerPrefs.SetInt("lvOne", 0);
+        PlayerPrefs.SetInt("levelThree", 0);
+    }
     // logs the # of throws on for the hole you finished and then resets the count
     public void LogThrows(string hole) {
-        if (PlayerPrefs.HasKey(hole)) {
-            if (currentThrows < PlayerPrefs.GetInt(hole)) {
-                PlayerPrefs.SetInt(hole, currentThrows);
-            }
-        } else {
-            PlayerPrefs.SetInt(hole, currentThrows);
-        }
-        ResetThrows();
+        PlayerPrefs.SetInt(hole, currentThrows);
     }
     public void ShowScoreCard() {
         scoreCard.SetActive(true);
-        if (PlayerPrefs.HasKey("LvOne")) {
-            hole1ScoreText.text = "" + PlayerPrefs.GetInt("LvOne");
-        }
-        if (PlayerPrefs.HasKey("LevelThree"))
-        {
-            hole2ScoreText.text = "" + PlayerPrefs.GetInt("LevelThree");
-        }
+        hole1ScoreText.text = "" + PlayerPrefs.GetInt("LvOne");
+        hole2ScoreText.text = "" + PlayerPrefs.GetInt("LevelThree");
         totalScoreText.text = "" + (PlayerPrefs.GetInt("LvOne") + PlayerPrefs.GetInt("LevelThree"));
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
     //sets the throws Text to the current throws;
     private void SetScoreText() {
