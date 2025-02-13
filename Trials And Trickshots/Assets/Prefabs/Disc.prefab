@@ -137,7 +137,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 595ac180b90f3f14484a07ff57caccdc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -205,9 +205,6 @@ MonoBehaviour:
   shieldHits: 3
   shieldInvulnerabilityTime: 0.1
   upwardsBounce: 1
-  ground:
-    serializedVersion: 2
-    m_Bits: 256
   discBox: {fileID: 9200581153839121161}
 --- !u!65 &9200581153839121161
 BoxCollider:

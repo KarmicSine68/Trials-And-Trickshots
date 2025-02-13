@@ -19,6 +19,9 @@ public class DiscThrower : MonoBehaviour
 
     [Header("Disc Variables")]
 
+    [Tooltip("List of visual objects of the discs")]
+    [SerializeField] private List<GameObject> fakeDiscs = new List<GameObject>();
+
     [Tooltip("List of disc prefabs")]
     [SerializeField] private List<GameObject> discs = new List<GameObject>();
     private int listIndex = 0;
@@ -63,6 +66,7 @@ public class DiscThrower : MonoBehaviour
         cycleDown.started += CycleDown_started;
 
         discReady = true;
+        DisplayDisc();
     }
 
     /// <summary>
@@ -77,7 +81,7 @@ public class DiscThrower : MonoBehaviour
             listIndex = discs.Count - 1;
         }
 
-        Debug.Log(listIndex);
+        DisplayDisc();
     }
 
     /// <summary>
@@ -91,7 +95,8 @@ public class DiscThrower : MonoBehaviour
         {
             listIndex = 0;
         }
-        Debug.Log(listIndex);
+
+        DisplayDisc();
     }
 
     /// <summary>
@@ -102,6 +107,8 @@ public class DiscThrower : MonoBehaviour
     {
         if (discReady)
         {
+            fakeDiscs[listIndex].SetActive(false);
+
             discReady = false;
             chargingDisc = true;
 
@@ -138,10 +145,10 @@ public class DiscThrower : MonoBehaviour
 
         ThrowDisc();
 
-        if(inHub)
-        {
-            discReady = true;
-        }
+        //if(inHub)
+        //{
+        //    discReady = true;
+        //}
     }
 
     /// <summary>
@@ -172,6 +179,25 @@ public class DiscThrower : MonoBehaviour
     public void ReadyDisc()
     {
         discReady = true;
+        DisplayDisc();
+    }
+
+    /// <summary>
+    /// Displays which visual disc should be shown
+    /// </summary>
+    private void DisplayDisc()
+    {
+        foreach(GameObject i in fakeDiscs)
+        {
+            if(fakeDiscs.IndexOf(i) == listIndex)
+            {
+                i.SetActive(true);
+            }
+            else
+            {
+                i.SetActive(false);
+            }
+        }
     }
 
     private void OnDisable()
