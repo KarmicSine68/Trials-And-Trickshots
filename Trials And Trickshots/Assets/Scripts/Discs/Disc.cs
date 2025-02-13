@@ -19,6 +19,9 @@ public class Disc : MonoBehaviour
     [Tooltip("The gravity enacted on the disc")]
     [SerializeField] protected float discGravity;
 
+    [Tooltip("How long the delay is to teleport the player after the disc stops")]
+    private float delayTime;
+
     [Header("Shield variables")]
     [Tooltip("While active, the disc will bounce off the ground instead of stopping")]
     [SerializeField] private bool shielded;
@@ -42,6 +45,8 @@ public class Disc : MonoBehaviour
     protected Vector3 landingPosition;
     protected GameObject player;
 
+    protected bool stopped = false;
+
     /// <summary>
     /// Gets a reference to the player gameobject
     /// </summary>
@@ -62,14 +67,16 @@ public class Disc : MonoBehaviour
         if(grounded)
         {
             Debug.Log(rb.velocity);
-            if (Mathf.Abs(rb.velocity.x) <= .001 && Mathf.Abs(rb.velocity.z) <= .001)
+            if (Mathf.Abs(rb.velocity.x) <= .001 && Mathf.Abs(rb.velocity.z) <= .001
+                && !stopped)
             {
-                Debug.Log("1");
+                stopped = true;
+
+                rb.velocity = Vector3.zero;
+
                 landingPosition = transform.position;
-                Debug.Log("2");
-                TeleportPlayer();
-                Debug.Log("3");
-                Destroy(gameObject);
+
+                StartCoroutine(DelayTeleport());
             }
         }
     }
@@ -157,6 +164,22 @@ public class Disc : MonoBehaviour
         if (player != null)
         {
             player.transform.position = landingPosition;
+
+            DiscThrower dt = FindObjectOfType<DiscThrower>();
+            dt.ReadyDisc();
         }
+
+        Destroy(gameObject);
+    }
+
+    /// <summary>
+    /// Waits x amount of timne after the disc stops before teleporting the player
+    /// </summary>
+    /// <returns></returns>
+    protected IEnumerator DelayTeleport()
+    {
+        yield return new WaitForSeconds(delayTime);
+
+        TeleportPlayer();
     }
 }
