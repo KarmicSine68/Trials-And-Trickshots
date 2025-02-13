@@ -206,5 +206,8 @@ public class DiscThrower : MonoBehaviour
 
         throwDisc.started -= ThrowDisc_started;
         throwDisc.canceled -= ThrowDisc_canceled;
+
+        cycleUp.started -= CycleUp_started;
+        cycleDown.started -= CycleDown_started;
     }
 }
