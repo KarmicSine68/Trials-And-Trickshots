@@ -26,7 +26,8 @@ public class Hub_Portal : MonoBehaviour
             //SceneManager.LoadScene(_level);
             //break particales
             //BreakParticles(); //disabled for now
-            //activate teleport
+            
+            //disabling this will make the score card stop working
             if (!(_level == "Hub"))
             {
                 SceneManager.LoadScene(_level);
@@ -36,7 +37,6 @@ public class Hub_Portal : MonoBehaviour
                 sm.LogThrows(SceneManager.GetActiveScene().name);
                 sm.ShowScoreCard();
             }
-            //sends them to level set in _level string in inspector.
 
         }
     }
