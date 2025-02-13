@@ -12,15 +12,16 @@ using UnityEngine.InputSystem;
 public class DiscThrower : MonoBehaviour
 {
     InputActionMap actionMap;
-    InputAction throwDisc;
+    InputAction throwDisc, cycleUp, cycleDown;
 
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject cam;
-    
+
     [Header("Disc Variables")]
 
-    [Tooltip("The disk prefab")]
-    [SerializeField] private GameObject disc;
+    [Tooltip("List of disc prefabs")]
+    [SerializeField] private List<GameObject> discs = new List<GameObject>();
+    private int listIndex = 0;
 
     [Tooltip("The base launch power of the disk")]
     [SerializeField] private float baseLaunchPower;
@@ -52,11 +53,45 @@ public class DiscThrower : MonoBehaviour
         actionMap.Enable();
 
         throwDisc = actionMap.FindAction("Throw");
+        cycleUp = actionMap.FindAction("CycleUp");
+        cycleDown = actionMap.FindAction("CycleDown");
 
         throwDisc.started += ThrowDisc_started;
         throwDisc.canceled += ThrowDisc_canceled;
 
+        cycleUp.started += CycleUp_started;
+        cycleDown.started += CycleDown_started;
+
         discReady = true;
+    }
+
+    /// <summary>
+    /// Cycles down through the list of discs and wraps back to the top
+    /// </summary>
+    /// <param name="obj"></param>
+    private void CycleDown_started(InputAction.CallbackContext obj)
+    {
+        --listIndex;
+        if(listIndex < 0)
+        {
+            listIndex = discs.Count - 1;
+        }
+
+        Debug.Log(listIndex);
+    }
+
+    /// <summary>
+    /// Cycles up through the list of discs and wraps back to the bottom
+    /// </summary>
+    /// <param name="obj"></param>
+    private void CycleUp_started(InputAction.CallbackContext obj)
+    {
+        ++listIndex;
+        if(listIndex >= discs.Count)
+        {
+            listIndex = 0;
+        }
+        Debug.Log(listIndex);
     }
 
     /// <summary>
@@ -117,7 +152,7 @@ public class DiscThrower : MonoBehaviour
         Debug.Log("Reached");
 
         //Spawns the disc
-        GameObject spawnedDisc = Instantiate(disc, cam.transform.position, Quaternion.identity);
+        GameObject spawnedDisc = Instantiate(discs[listIndex], cam.transform.position, Quaternion.identity);
 
         Vector3 launchForce = cam.transform.forward * baseLaunchPower * throwMultipler;
 

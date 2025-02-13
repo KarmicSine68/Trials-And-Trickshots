@@ -239,7 +239,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 6330581635865508920}
   cam: {fileID: 2215650023450734411}
-  disc: {fileID: 4157919118799871911, guid: afb299e0c69393b459a4e55391036c24, type: 3}
+  discs:
+  - {fileID: 4157919118799871911, guid: afb299e0c69393b459a4e55391036c24, type: 3}
+  - {fileID: 4157919118799871911, guid: 0babf4842aded7649a981536b9a194f0, type: 3}
+  - {fileID: 4157919118799871911, guid: 47eebc613b493054a916534f2072f6fe, type: 3}
   baseLaunchPower: 10
   maxThrowMultipler: 2.5
   timeTillMaxPower: 1
