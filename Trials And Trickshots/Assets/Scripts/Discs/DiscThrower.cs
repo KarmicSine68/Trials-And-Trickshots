@@ -102,8 +102,9 @@ public class DiscThrower : MonoBehaviour
         }
 
         ThrowDisc();
+        GameObject.Find("ScoreManager").GetComponent<ScoreManager>().IncreaseThrows();
 
-        if(inHub)
+        if (inHub)
         {
             discReady = true;
         }
