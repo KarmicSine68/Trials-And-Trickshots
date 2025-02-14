@@ -107,8 +107,6 @@ public class DiscThrower : MonoBehaviour
     {
         if (discReady)
         {
-            fakeDiscs[listIndex].SetActive(false);
-
             discReady = false;
             chargingDisc = true;
 
@@ -133,6 +131,9 @@ public class DiscThrower : MonoBehaviour
     /// </summary>
     private IEnumerator ChargeDisc()
     {
+        bool incrementing = true;
+        float changeValue = (maxThrowMultipler - MIN_THROW_MULTIPLIER) / (timeTillMaxPower * 10);
+
         while(chargingDisc)
         {
             if(!chargingDisc)
@@ -141,6 +142,29 @@ public class DiscThrower : MonoBehaviour
             }
 
             yield return new WaitForSeconds(.1f);
+
+            if (incrementing)
+            {
+                throwMultipler += changeValue;
+                if (throwMultipler >= maxThrowMultipler)
+                {
+                    throwMultipler = maxThrowMultipler;
+                    Debug.Log(throwMultipler);
+                    incrementing = false;
+                }
+            }
+            else
+            {
+                throwMultipler -= changeValue;
+                if (throwMultipler <= MIN_THROW_MULTIPLIER)
+                {
+                    throwMultipler = MIN_THROW_MULTIPLIER;
+                    //Debug.Log(throwMultipler);
+                    incrementing = true;
+                }
+            }
+
+            Debug.Log(throwMultipler);
         }
 
         ThrowDisc();
@@ -156,7 +180,7 @@ public class DiscThrower : MonoBehaviour
     /// </summary>
     private void ThrowDisc()
     {
-        Debug.Log("Reached");
+        fakeDiscs[listIndex].SetActive(false);
 
         //Spawns the disc
         GameObject spawnedDisc = Instantiate(discs[listIndex], cam.transform.position, Quaternion.identity);
