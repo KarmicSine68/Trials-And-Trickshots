@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 2907104499757770191}
   - component: {fileID: 9200581153839121161}
   m_Layer: 7
-  m_Name: Disc
+  m_Name: BubbleDisc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,7 +137,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 595ac180b90f3f14484a07ff57caccdc, type: 2}
+  - {fileID: 2100000, guid: 7f9ab871a193e7a4fb92d08d6fb1d48f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -201,7 +201,7 @@ MonoBehaviour:
   rb: {fileID: 5167435234902762087}
   discFriction: 2
   discGravity: 0.5
-  shielded: 0
+  shielded: 1
   shieldHits: 3
   shieldInvulnerabilityTime: 0.1
   upwardsBounce: 1
