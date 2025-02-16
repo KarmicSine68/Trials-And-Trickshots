@@ -522,7 +522,7 @@ GameObject:
   - component: {fileID: 307046131}
   - component: {fileID: 307046130}
   - component: {fileID: 307046129}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: OuterWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -880,7 +880,7 @@ GameObject:
   - component: {fileID: 335529081}
   - component: {fileID: 335529080}
   - component: {fileID: 335529079}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4166,7 +4166,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 2.0256815, y: 2.240919, z: 0.53759766}
   m_Center: {x: -0.53539443, y: 0.37046057, z: -0.018798828}
@@ -4855,6 +4855,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6361845319021262923, guid: d0164faf67d398247a0c02c0d8e28e08, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6846837858484975486, guid: d0164faf67d398247a0c02c0d8e28e08, type: 3}
       propertyPath: m_Name
       value: CandyCorn (1)
@@ -5331,7 +5335,7 @@ GameObject:
   - component: {fileID: 734354343}
   - component: {fileID: 734354342}
   - component: {fileID: 734354341}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -5723,7 +5727,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 2.0256815, y: 2.240919, z: 0.53759766}
   m_Center: {x: -0.53539443, y: 0.37046057, z: -0.018798828}
@@ -6434,7 +6438,7 @@ GameObject:
   - component: {fileID: 886853546}
   - component: {fileID: 886853545}
   - component: {fileID: 886853544}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7268,7 +7272,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 2.0256815, y: 2.240919, z: 0.53759766}
   m_Center: {x: -0.53539443, y: 0.37046057, z: -0.018798828}
@@ -7581,7 +7585,7 @@ GameObject:
   - component: {fileID: 1070213292}
   - component: {fileID: 1070213291}
   - component: {fileID: 1070213290}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: OuterWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8262,6 +8266,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SecondaryStoopid (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8974009353810461081, guid: 738971dadcaa92a4788894824a855bc2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 5897923824866033333, guid: 738971dadcaa92a4788894824a855bc2, type: 3}
@@ -8909,7 +8917,7 @@ GameObject:
   - component: {fileID: 1346670077}
   - component: {fileID: 1346670076}
   - component: {fileID: 1346670075}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: OuterWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9336,6 +9344,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SecondaryStoopid
       objectReference: {fileID: 0}
+    - target: {fileID: 8974009353810461081, guid: 738971dadcaa92a4788894824a855bc2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 5897923824866033333, guid: 738971dadcaa92a4788894824a855bc2, type: 3}
@@ -9363,7 +9375,7 @@ GameObject:
   - component: {fileID: 1347598614}
   - component: {fileID: 1347598613}
   - component: {fileID: 1347598612}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: OuterWall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9716,7 +9728,7 @@ GameObject:
   - component: {fileID: 1414324331}
   - component: {fileID: 1414324330}
   - component: {fileID: 1414324329}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10298,7 +10310,7 @@ GameObject:
   - component: {fileID: 1495110838}
   - component: {fileID: 1495110837}
   - component: {fileID: 1495110836}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11548,7 +11560,7 @@ GameObject:
   - component: {fileID: 1836590918}
   - component: {fileID: 1836590917}
   - component: {fileID: 1836590916}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14804,7 +14816,7 @@ GameObject:
   - component: {fileID: 1947731609}
   - component: {fileID: 1947731608}
   - component: {fileID: 1947731607}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15416,7 +15428,7 @@ GameObject:
   - component: {fileID: 2010517088}
   - component: {fileID: 2010517087}
   - component: {fileID: 2010517086}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15769,7 +15781,7 @@ GameObject:
   - component: {fileID: 2010723969}
   - component: {fileID: 2010723968}
   - component: {fileID: 2010723967}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: OuterWall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16541,7 +16553,7 @@ GameObject:
   - component: {fileID: 2083309247}
   - component: {fileID: 2083309246}
   - component: {fileID: 2083309245}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: OuterWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
