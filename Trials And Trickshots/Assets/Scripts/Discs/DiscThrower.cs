@@ -168,6 +168,9 @@ public class DiscThrower : MonoBehaviour
         //Adds a force to the disc to get it to fly forward
         spawnedDisc.GetComponent<Rigidbody>().AddForce(launchForce, ForceMode.Impulse);
 
+        //increases the count on the scenes score manager
+        GameObject.Find("ScoreManager").GetComponent<ScoreManager>().IncreaseThrows();
+
         //An alternte way of throwing the disc in case the previous way causes problems
         //float launchForce = baseLaunchPower * throwMultipler;
         //spawnedDisc.GetComponent<Rigidbody>().velocity = player.transform.forward * launchForce;
