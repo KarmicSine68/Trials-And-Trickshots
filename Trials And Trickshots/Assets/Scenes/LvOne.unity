@@ -6376,6 +6376,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3286977885881133449, guid: 88c072616dd8fbd42bcb14bc43cf6786, type: 3}
+      propertyPath: m_Text
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6820,6 +6824,14 @@ PrefabInstance:
     - target: {fileID: 8306271383535254580, guid: daec33a76460ed64eb89545db1523a48, type: 3}
       propertyPath: sensitivity
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8306271383535254580, guid: daec33a76460ed64eb89545db1523a48, type: 3}
+      propertyPath: _vertViewLow
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8306271383535254580, guid: daec33a76460ed64eb89545db1523a48, type: 3}
+      propertyPath: _vertViewHigh
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8733588459667980462, guid: daec33a76460ed64eb89545db1523a48, type: 3}
       propertyPath: m_LocalPosition.x
