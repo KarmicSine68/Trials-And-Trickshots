@@ -498,6 +498,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3065865781421245255}
   - component: {fileID: 8348057725976671050}
+  - component: {fileID: 5153048801325356707}
+  - component: {fileID: 215038883806219901}
   m_Layer: 0
   m_Name: DiscCamera
   m_TagString: Untagged
@@ -628,6 +630,35 @@ MonoBehaviour:
   - {fileID: 996223223763621112}
   - {fileID: 1806422551531117914}
   - {fileID: 3447323362369277793}
+--- !u!114 &5153048801325356707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5125468717875909792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2fba25a5cd15594e8f050a11e386c80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ConfineMode: 1
+  m_BoundingVolume: {fileID: 0}
+  m_BoundingShape2D: {fileID: 0}
+  m_ConfineScreenEdges: 1
+  m_Damping: 0
+--- !u!114 &215038883806219901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5125468717875909792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76aad67715e44294fa936521d0e01f95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5654391016316662534
 GameObject:
   m_ObjectHideFlags: 3
