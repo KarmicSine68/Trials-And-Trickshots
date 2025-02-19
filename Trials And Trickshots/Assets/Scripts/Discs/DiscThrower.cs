@@ -193,7 +193,14 @@ public class DiscThrower : MonoBehaviour
         spawnedDisc.GetComponent<Rigidbody>().AddForce(launchForce, ForceMode.Impulse);
 
         //increases the count on the scenes score manager
-        GameObject.Find("ScoreManager").GetComponent<ScoreManager>().IncreaseThrows();
+        try
+        {
+            GameObject.Find("ScoreManager").GetComponent<ScoreManager>().IncreaseThrows();
+        }
+        catch
+        {
+
+        }
 
         //An alternte way of throwing the disc in case the previous way causes problems
         //float launchForce = baseLaunchPower * throwMultipler;
