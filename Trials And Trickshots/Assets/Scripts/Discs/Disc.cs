@@ -66,7 +66,7 @@ public class Disc : MonoBehaviour
 
         if(grounded)
         {
-            Debug.Log(rb.velocity);
+            //Debug.Log(rb.velocity);
             if (Mathf.Abs(rb.velocity.x) <= .001 && Mathf.Abs(rb.velocity.z) <= .001
                 && !stopped)
             {
@@ -77,6 +77,11 @@ public class Disc : MonoBehaviour
                 landingPosition = transform.position;
 
                 StartCoroutine(DelayTeleport());
+            }
+
+            if(rb.velocity.y > 0)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             }
         }
     }
@@ -102,6 +107,7 @@ public class Disc : MonoBehaviour
             //If no shield, enable friction to slow the disc down
             if (!shielded)
             {
+                Debug.Log("jlkfsdjlfk");
                 grounded = true;
                 GetComponent<Collider>().material.dynamicFriction = discFriction;
                 GetComponent<Collider>().material.bounciness = 0;
@@ -151,7 +157,7 @@ public class Disc : MonoBehaviour
     /// <returns></returns>
     protected virtual bool HitGround()
     {
-        return Physics.BoxCast(discBox.bounds.center, discBox.bounds.size, Vector3.down, Quaternion.identity, .03f);
+        return Physics.BoxCast(discBox.bounds.center, discBox.bounds.size, Vector3.down, Quaternion.identity, .1f);
     }
 
     /// <summary>
