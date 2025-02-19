@@ -114,7 +114,6 @@ public class Disc : MonoBehaviour
                 StartCoroutine(EnableShieldDamage());
 
                 --shieldHits;
-                Debug.Log(shieldHits);
 
                 //Disables shield if it runs out of durability
                 if (shieldHits <= 0)
@@ -161,6 +160,7 @@ public class Disc : MonoBehaviour
     /// </summary>
     protected void TeleportPlayer()
     {
+        Debug.Log("HI");
         if (player != null)
         {
             player.transform.position = landingPosition;

@@ -35,6 +35,9 @@ public class DiscThrower : MonoBehaviour
     [Tooltip("How long it takes for a max throw to be reached")]
     [SerializeField] private float timeTillMaxPower;
 
+    [Tooltip("The height offset for where the disc gets thrown")]
+    [SerializeField] private float yOffset;
+
     private float throwMultipler;
     private const float MIN_THROW_MULTIPLIER = 1;
 
@@ -134,7 +137,10 @@ public class DiscThrower : MonoBehaviour
         bool incrementing = true;
         float changeValue = (maxThrowMultipler - MIN_THROW_MULTIPLIER) / (timeTillMaxPower * 10);
 
-        while(chargingDisc)
+        //Slight delay before charging begins
+        yield return new WaitForSeconds(.1f);
+
+        while (chargingDisc)
         {
             if(!chargingDisc)
             {
@@ -149,22 +155,19 @@ public class DiscThrower : MonoBehaviour
                 if (throwMultipler >= maxThrowMultipler)
                 {
                     throwMultipler = maxThrowMultipler;
-                    Debug.Log(throwMultipler);
                     incrementing = false;
                 }
             }
+            //Starts decreasing in power when max power has been achieved
             else
             {
                 throwMultipler -= changeValue;
                 if (throwMultipler <= MIN_THROW_MULTIPLIER)
                 {
                     throwMultipler = MIN_THROW_MULTIPLIER;
-                    //Debug.Log(throwMultipler);
                     incrementing = true;
                 }
             }
-
-            Debug.Log(throwMultipler);
         }
 
         ThrowDisc();
@@ -182,12 +185,12 @@ public class DiscThrower : MonoBehaviour
     {
         fakeDiscs[listIndex].SetActive(false);
 
+        Vector3 offsetVector = new Vector3(0, yOffset, 0);
+
         //Spawns the disc
-        GameObject spawnedDisc = Instantiate(discs[listIndex], cam.transform.position, Quaternion.identity);
+        GameObject spawnedDisc = Instantiate(discs[listIndex], cam.transform.position + offsetVector, Quaternion.identity);
 
         Vector3 launchForce = cam.transform.forward * baseLaunchPower * throwMultipler;
-
-        Debug.Log(launchForce);
 
         //Adds a force to the disc to get it to fly forward
         spawnedDisc.GetComponent<Rigidbody>().AddForce(launchForce, ForceMode.Impulse);

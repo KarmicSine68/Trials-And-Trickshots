@@ -252,6 +252,7 @@ MonoBehaviour:
   baseLaunchPower: 10
   maxThrowMultipler: 2.5
   timeTillMaxPower: 1
+  yOffset: 0
   inHub: 1
 --- !u!1 &6330581635865508920
 GameObject:
