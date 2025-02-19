@@ -9,16 +9,28 @@ using Cinemachine;
 
 public class ChangeBoundingVolume : MonoBehaviour
 {
-    CinemachineConfiner sceneConfiner;
-    GameObject boundingVolume;
+    private CinemachineConfiner sceneConfiner;
+    private GameObject boundingVolume;
 
-
-    // Start is called before the first frame update
     void Start()
     {
-        boundingVolume = GameObject.FindGameObjectWithTag("Confiner");
-        sceneConfiner = GetComponent<CinemachineConfiner>();
-        sceneConfiner.m_ConfineMode = CinemachineConfiner.Mode.Confine3D;
-        sceneConfiner.m_BoundingVolume = boundingVolume.GetComponent<Collider>();
+        sceneConfiner = GetComponentInChildren<CinemachineConfiner>();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Confiner"))
+        {
+            boundingVolume = other.gameObject;
+            if (boundingVolume != null)
+            {
+                sceneConfiner.m_BoundingVolume = boundingVolume.GetComponent<Collider>();
+                Debug.Log("Bounding volume changed to: " + boundingVolume.name);
+            }
+            else
+            {
+                Debug.LogError("Bounding volume is null!");
+            }
+        }
     }
 }

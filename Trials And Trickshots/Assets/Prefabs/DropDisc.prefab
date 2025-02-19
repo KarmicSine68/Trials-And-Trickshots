@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2017032227118688560}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.33100688, y: 0.00000039181143, z: -0.00000013744001, w: 0.9436284}
+  m_LocalRotation: {x: 0.33100694, y: 0, z: 0, w: 0.9436283}
   m_LocalPosition: {x: 0, y: 0, z: -0.0000009536743}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -361,6 +361,7 @@ GameObject:
   - component: {fileID: 9200581153839121161}
   - component: {fileID: 5908857064934840073}
   - component: {fileID: 8715528121786792089}
+  - component: {fileID: 4625615182107619375}
   m_Layer: 7
   m_Name: DropDisc
   m_TagString: Untagged
@@ -533,6 +534,18 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &4625615182107619375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4157919118799871911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76aad67715e44294fa936521d0e01f95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6740876548873694031
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,7 +698,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8192446948667930038}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2965112, y: -0.000000061436296, z: 0.000000019074337, w: 0.9550294}
+  m_LocalRotation: {x: 0.29651126, y: 0, z: 0, w: 0.95502937}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -891,7 +904,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928925110582955277}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.31378803, y: 0.00000005547168, z: -0.000000018332255, w: 0.9494931}
+  m_LocalRotation: {x: 0.31378806, y: 0, z: 0, w: 0.94949305}
   m_LocalPosition: {x: 0, y: 0, z: -0.0000009536743}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
