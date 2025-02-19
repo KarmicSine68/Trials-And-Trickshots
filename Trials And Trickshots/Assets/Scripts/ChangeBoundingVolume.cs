@@ -1,12 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
+/******************************************************************************
+ * Author: Skylar Turner
+ * Creation Date: 2/18/2025
+ * File Name: ChangeBoundingVolume.cs
+ * Brief: Makes sure the Cinemachine confiner is set to the correct bounding volume
+ * ***************************************************************************/
 using UnityEngine;
 using Cinemachine;
 
 public class ChangeBoundingVolume : MonoBehaviour
 {
     CinemachineConfiner sceneConfiner;
-    [SerializeField] CinemachineVirtualCamera virtualCamera;
     GameObject boundingVolume;
 
 
