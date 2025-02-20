@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class DiscThrower : MonoBehaviour
 {
@@ -48,6 +49,11 @@ public class DiscThrower : MonoBehaviour
     [Tooltip("Check true if player is in the hub/firing range")]
     [SerializeField] private bool inHub;
 
+    //Charge meter
+    [SerializeField] private GameObject chargeMeter;
+    [SerializeField] private GameObject chargeBar;
+    Image chargeFill;
+
     /// <summary>
     /// Gets a reference to the player's input actions
     /// </summary>
@@ -70,6 +76,56 @@ public class DiscThrower : MonoBehaviour
 
         discReady = true;
         DisplayDisc();
+
+        GameObject[] objects = FindObjectsOfType<GameObject>();
+        foreach(GameObject i in objects)
+        {
+            if(i.name.Contains("ChargeMeter"))
+            {
+                chargeMeter = i;
+            }
+
+            if(i.name.Contains("Fill"))
+            {
+                chargeBar = i;
+            }
+        }
+
+        chargeFill = chargeBar.GetComponent<Image>();
+        chargeFill.fillAmount = 0;
+    }
+
+    /// <summary>
+    /// Displays the charge bar
+    /// </summary>
+    private void Update()
+    {
+        if(discReady)
+        {
+            chargeMeter.SetActive(true);
+        }
+
+        if(chargingDisc)
+        {
+            chargeBar.SetActive(true);
+
+            float work = (throwMultipler - 1) / (maxThrowMultipler - 1);
+
+            Debug.Log(work);
+
+            chargeFill.fillAmount =
+                Mathf.Lerp(chargeFill.fillAmount, work, 10 * Time.deltaTime);
+
+            Color chargeColor = Color.Lerp(Color.green, Color.red, work);
+
+            chargeFill.color = chargeColor;
+        }
+        else if(!discReady)
+        {
+            chargeBar.SetActive(false);
+            chargeMeter.SetActive(false);
+            chargeFill.fillAmount = 0;
+        }
     }
 
     /// <summary>
