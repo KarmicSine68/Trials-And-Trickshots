@@ -12,7 +12,7 @@ public class ScoreCardButtonController : MonoBehaviour
     }
     public void ReturnToHubClicked()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Hub");
     }
     public void ReplayLevelClicked()
     {
