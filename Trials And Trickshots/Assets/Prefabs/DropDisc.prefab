@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 916074978959838957}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.22443421, y: -0.000000029042047, z: 0.000000006688661, w: 0.9744893}
+  m_LocalRotation: {x: 0.2244342, y: 0, z: 0, w: 0.9744893}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -231,7 +231,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3307585179762530961}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1840291, y: -1.6870447e-15, z: 3.4612694e-16, w: 0.9829208}
+  m_LocalRotation: {x: 0.18402913, y: 0, z: 0, w: 0.9829208}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -297,11 +297,10 @@ GameObject:
   - component: {fileID: 7623320847190679890}
   - component: {fileID: 2307897643276787448}
   - component: {fileID: 5167435234902762087}
-  - component: {fileID: 9200581153839121161}
   - component: {fileID: 5908857064934840073}
   - component: {fileID: 8715528121786792089}
-  - component: {fileID: 1868212124241159247}
   - component: {fileID: 4481242315720844443}
+  - component: {fileID: 7563953096687106986}
   m_Layer: 7
   m_Name: DropDisc
   m_TagString: Untagged
@@ -402,27 +401,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
---- !u!65 &9200581153839121161
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4157919118799871911}
-  m_Material: {fileID: 13400000, guid: b97059a8dacd4674dbe8ba338af80713, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 256
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 512
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 0.25, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5908857064934840073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,7 +420,7 @@ MonoBehaviour:
   shieldHits: 0
   shieldInvulnerabilityTime: 0
   upwardsBounce: 0
-  discBox: {fileID: 9200581153839121161}
+  discBox: {fileID: 7563953096687106986}
   dropSpeed: 10
 --- !u!114 &8715528121786792089
 MonoBehaviour:
@@ -474,27 +452,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!135 &1868212124241159247
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4157919118799871911}
-  m_Material: {fileID: 13400000, guid: b97059a8dacd4674dbe8ba338af80713, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 512
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 256
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4481242315720844443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -507,6 +464,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76aad67715e44294fa936521d0e01f95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &7563953096687106986
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4157919118799871911}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &5951308758605338226
 GameObject:
   m_ObjectHideFlags: 0
