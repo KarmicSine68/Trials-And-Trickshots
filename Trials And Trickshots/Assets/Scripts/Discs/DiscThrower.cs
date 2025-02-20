@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class DiscThrower : MonoBehaviour
 {
@@ -35,6 +36,9 @@ public class DiscThrower : MonoBehaviour
     [Tooltip("How long it takes for a max throw to be reached")]
     [SerializeField] private float timeTillMaxPower;
 
+    [Tooltip("The height offset for where the disc gets thrown")]
+    [SerializeField] private float yOffset;
+
     private float throwMultipler;
     private const float MIN_THROW_MULTIPLIER = 1;
 
@@ -44,6 +48,11 @@ public class DiscThrower : MonoBehaviour
     [Header("Reset Condition")]
     [Tooltip("Check true if player is in the hub/firing range")]
     [SerializeField] private bool inHub;
+
+    //Charge meter
+    [SerializeField] private GameObject chargeMeter;
+    [SerializeField] private GameObject chargeBar;
+    Image chargeFill;
 
     /// <summary>
     /// Gets a reference to the player's input actions
@@ -67,6 +76,56 @@ public class DiscThrower : MonoBehaviour
 
         discReady = true;
         DisplayDisc();
+
+        GameObject[] objects = FindObjectsOfType<GameObject>();
+        foreach(GameObject i in objects)
+        {
+            if(i.name.Contains("ChargeMeter"))
+            {
+                chargeMeter = i;
+            }
+
+            if(i.name.Contains("Fill"))
+            {
+                chargeBar = i;
+            }
+        }
+
+        chargeFill = chargeBar.GetComponent<Image>();
+        chargeFill.fillAmount = 0;
+    }
+
+    /// <summary>
+    /// Displays the charge bar
+    /// </summary>
+    private void Update()
+    {
+        if(discReady)
+        {
+            chargeMeter.SetActive(true);
+        }
+
+        if(chargingDisc)
+        {
+            chargeBar.SetActive(true);
+
+            float work = (throwMultipler - 1) / (maxThrowMultipler - 1);
+
+            Debug.Log(work);
+
+            chargeFill.fillAmount =
+                Mathf.Lerp(chargeFill.fillAmount, work, 10 * Time.deltaTime);
+
+            Color chargeColor = Color.Lerp(Color.green, Color.red, work);
+
+            chargeFill.color = chargeColor;
+        }
+        else if(!discReady)
+        {
+            chargeBar.SetActive(false);
+            chargeMeter.SetActive(false);
+            chargeFill.fillAmount = 0;
+        }
     }
 
     /// <summary>
@@ -107,8 +166,6 @@ public class DiscThrower : MonoBehaviour
     {
         if (discReady)
         {
-            fakeDiscs[listIndex].SetActive(false);
-
             discReady = false;
             chargingDisc = true;
 
@@ -133,7 +190,13 @@ public class DiscThrower : MonoBehaviour
     /// </summary>
     private IEnumerator ChargeDisc()
     {
-        while(chargingDisc)
+        bool incrementing = true;
+        float changeValue = (maxThrowMultipler - MIN_THROW_MULTIPLIER) / (timeTillMaxPower * 10);
+
+        //Slight delay before charging begins
+        yield return new WaitForSeconds(.1f);
+
+        while (chargingDisc)
         {
             if(!chargingDisc)
             {
@@ -141,6 +204,26 @@ public class DiscThrower : MonoBehaviour
             }
 
             yield return new WaitForSeconds(.1f);
+
+            if (incrementing)
+            {
+                throwMultipler += changeValue;
+                if (throwMultipler >= maxThrowMultipler)
+                {
+                    throwMultipler = maxThrowMultipler;
+                    incrementing = false;
+                }
+            }
+            //Starts decreasing in power when max power has been achieved
+            else
+            {
+                throwMultipler -= changeValue;
+                if (throwMultipler <= MIN_THROW_MULTIPLIER)
+                {
+                    throwMultipler = MIN_THROW_MULTIPLIER;
+                    incrementing = true;
+                }
+            }
         }
 
         ThrowDisc();
@@ -156,14 +239,14 @@ public class DiscThrower : MonoBehaviour
     /// </summary>
     private void ThrowDisc()
     {
-        Debug.Log("Reached");
+        fakeDiscs[listIndex].SetActive(false);
+
+        Vector3 offsetVector = new Vector3(0, yOffset, 0);
 
         //Spawns the disc
-        GameObject spawnedDisc = Instantiate(discs[listIndex], cam.transform.position, Quaternion.identity);
+        GameObject spawnedDisc = Instantiate(discs[listIndex], cam.transform.position + offsetVector, Quaternion.identity);
 
         Vector3 launchForce = cam.transform.forward * baseLaunchPower * throwMultipler;
-
-        Debug.Log(launchForce);
 
         //Adds a force to the disc to get it to fly forward
         spawnedDisc.GetComponent<Rigidbody>().AddForce(launchForce, ForceMode.Impulse);

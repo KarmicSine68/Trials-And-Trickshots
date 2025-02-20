@@ -152,7 +152,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1174116334007648990}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.18403615, y: -0.00000038306632, z: 0.00000007172313, w: 0.98291945}
+  m_LocalRotation: {x: 0.18402913, y: 0, z: 0, w: 0.9829208}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -231,7 +231,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1530249810067800345}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.22443604, y: -0.0000011232167, z: 0.00000025868982, w: 0.97448885}
+  m_LocalRotation: {x: 0.2244342, y: 0, z: 0, w: 0.9744893}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -298,9 +298,8 @@ GameObject:
   - component: {fileID: 2307897643276787448}
   - component: {fileID: 5167435234902762087}
   - component: {fileID: 2907104499757770191}
-  - component: {fileID: 9200581153839121161}
-  - component: {fileID: 4736050562998488005}
   - component: {fileID: 8312290952765847661}
+  - component: {fileID: 5174744667431244389}
   m_Layer: 7
   m_Name: Disc
   m_TagString: Untagged
@@ -420,49 +419,7 @@ MonoBehaviour:
   shieldHits: 3
   shieldInvulnerabilityTime: 0.1
   upwardsBounce: 1
-  discBox: {fileID: 9200581153839121161}
---- !u!65 &9200581153839121161
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4157919118799871911}
-  m_Material: {fileID: 13400000, guid: b97059a8dacd4674dbe8ba338af80713, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 256
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 512
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 0.25, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &4736050562998488005
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4157919118799871911}
-  m_Material: {fileID: 13400000, guid: b97059a8dacd4674dbe8ba338af80713, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 512
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 256
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  discBox: {fileID: 5174744667431244389}
 --- !u!114 &8312290952765847661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,6 +432,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76aad67715e44294fa936521d0e01f95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &5174744667431244389
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4157919118799871911}
+  m_Material: {fileID: 13400000, guid: b97059a8dacd4674dbe8ba338af80713, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &5140841318670965876
 GameObject:
   m_ObjectHideFlags: 0
@@ -785,7 +764,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8378252311857311386}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.26501492, y: -0, z: -0, w: 0.96424437}
+  m_LocalRotation: {x: 0.2650149, y: 0, z: 0, w: 0.96424437}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
